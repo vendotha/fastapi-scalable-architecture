@@ -1,4 +1,4 @@
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel, EmailStr, ConfigDict
 from typing import List, Optional
 
 class TaskBase(BaseModel):
@@ -11,8 +11,10 @@ class TaskCreate(TaskBase):
 class Task(TaskBase):
     id: int
     owner_id: int
-    class Config:
-        orm_mode = True
+    
+    # OLD: class Config: orm_mode = True
+    # NEW (Pydantic V2):
+    model_config = ConfigDict(from_attributes=True)
 
 class UserCreate(BaseModel):
     email: EmailStr

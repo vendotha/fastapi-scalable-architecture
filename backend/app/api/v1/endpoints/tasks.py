@@ -33,3 +33,12 @@ def create_task(task: schemas.TaskCreate, db: Session = Depends(get_db), current
 @router.get("/", response_model=List[schemas.Task])
 def read_tasks(db: Session = Depends(get_db), current_user = Depends(get_current_user)):
     return db.query(all_models.Task).filter(all_models.Task.owner_id == current_user.id).all()
+
+@router.delete("/{task_id}")
+def delete_task(task_id: int, db: Session = Depends(get_db), current_user = Depends(get_current_user)):
+    task = db.query(all_models.Task).filter(all_models.Task.id == task_id, all_models.Task.owner_id == current_user.id).first()
+    if not task:
+        raise HTTPException(status_code=404, detail="Task not found")
+    db.delete(task)
+    db.commit()
+    return {"message": "Task deleted"}
