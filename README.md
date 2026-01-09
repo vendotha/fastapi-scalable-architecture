@@ -628,11 +628,6 @@ Let's discuss how I can contribute to your team's success in the Web3 trading in
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-### 🙏 Acknowledgments
-
-Built as part of the Backend Developer Internship assignment for **PrimeTrade AI / Bajarangs**.
-
----
 
 *Last Updated: 28-11-2025*  
 *Version: 1.0.0*  
